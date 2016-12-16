@@ -1,0 +1,25 @@
+:root{
+  --mainColor:red;
+  --word:"我";
+  --wordSecond:"喜欢";
+  --wordThird:"前端";
+  --words:"前端使我快乐！";
+  --margin:10px;
+}
+.test{
+  --mainColor: blue;
+  color:var(--mainColor);
+  text-indent:calc(var(--margin)*10);
+  width:400px;
+  margin:0 auto;
+  background:#ddd;
+}
+.test::before{
+  content:var(--word) var(--wordSecond) var(--wordThird)' ';
+}
+.test::after{
+  content:' 'var(--words);
+}
+.test{
+  text-align:center;
+}

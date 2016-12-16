@@ -1,0 +1,40 @@
+:root{
+    --mainColor:red;
+    --word:"我";
+    --wordSecond:"喜欢";
+    --wordThird:"前端";
+    --words:"前端使我快乐！";
+    --margin:10px;
+    --secondColor:#95CA0D;
+    --thirdColor:yellow;
+}
+.test{
+    --mainColor: blue;
+    color:var(--mainColor);
+    text-indent:calc(var(--margin)*10);
+    width:400px;
+    margin:0 auto;
+    background:var(--thirdColor);
+}
+.test::before{
+    content:var(--word) var(--wordSecond) var(--wordThird)' ';
+}
+.test:after{
+    content:' 'var(--words);
+}
+.test{
+    text-align:center;
+}
+.processcontainer{
+    width:450px;
+    border:1px solid var(--secondColor);
+    height:25px;
+    margin:100px auto;
+}
+#processbar{
+    background:var(--secondColor);
+    float:left;
+    height:100%;
+    text-align:center;
+    line-height:150%;
+}

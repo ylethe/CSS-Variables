@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="index2.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<div class="test"> css variable</div>
+<div class="processcontainer">
+    <div id="processbar" style="width:0%;"></div>
+</div>
+<script>
+    //读取
+    var root = getComputedStyle(document.documentElement);
+    var cssVariables = root.getPropertyValue('--margin').trim();
+    var flag=false;
+    console.log(cssVariables);
+    //写入
+    document.documentElement.style.setProperty('--margin','5px');
+
+
+    //设置进度函数
+    function setProcess(){
+        var processbar = document.getElementById("processbar");
+        processbar.style.width = parseInt(processbar.style.width) + 1 + "%";
+        processbar.innerHTML = processbar.style.width;
+        var process = parseInt(processbar.innerHTML);
+        if(process >= 50 &&process<100){
+            console.log(root.getPropertyValue("--words"),'called');
+            document.documentElement.style.setProperty('--secondColor','red');
+            var test = document.getElementsByClassName('test');
+            test[0].style.setProperty('--thirdColor','#95CA0D');
+            document.documentElement.style.setProperty('--words',"我要坚持学前端！"); //1
+            var css=function(t,s){
+                s=document.createElement('style');
+                s.innerText=t;
+                document.body.appendChild(s);
+            };
+            //不知道的原因，执行1时after属性会消失
+
+            //创建after
+            if(!flag){
+                flag=true;
+                (function(){
+                    css('.test:after{content:'+'"'+root.getPropertyValue("--words")+'"'+'}');
+                })()
+            }
+        }
+
+        else if(processbar.style.width == "100%"){
+            window.clearInterval(bartimer);
+        }
+    }
+
+
+    var bartimer = window.setInterval(function(){setProcess();},10);
+    window.onload = function(){
+        bartimer;
+    }
+
+</script>
+</body>
+</html>
